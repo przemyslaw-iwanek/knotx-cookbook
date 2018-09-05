@@ -93,6 +93,14 @@ cookbook!
   settings file is placed
 * `['knotx']['source']['knotx_conf_path']` - path to knot.x JVM template within
   a cookbook
+* `['knotx']['source']['knotx_jvm_security_access_cookbook']` - cookbook where
+  knot.x JVM authentication access level file is placed
+* `['knotx']['source']['knotx_jvm_security_access_path']` - path to knot.x JVM
+  authentication access level template within a cookbook
+* `['knotx']['source']['knotx_jvm_security_password_cookbook']` - cookbook where
+  knot.x JVM authentication login/password file is placed
+* `['knotx']['source']['knotx_jvm_security_password_path']` - path to knot.x JVM
+  authentication access level template within a cookbook
 * `['knotx']['source']['logback_xml_cookbook']` - cookbook where `logback.xml`
   template is placed
 * `['knotx']['source']['logback_xml_path']` - path to `logback.xml` template

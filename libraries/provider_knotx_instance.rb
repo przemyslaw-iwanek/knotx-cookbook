@@ -78,6 +78,14 @@ class Chef
           new_resource.install_dir, 'knotx.conf'
         )
 
+        @new_resource.jvm_security_access_config_path = ::File.join(
+          new_resource.install_dir, 'jmxremote.access.erb'
+        )
+
+        @new_resource.jvm_security_password_config_path = ::File.join(
+          new_resource.install_dir, 'jmxremote.password.erb'
+        )
+
         if new_resource.log_dir.nil?
           @new_resource.log_dir = ::File.join(
             node['knotx']['log_dir'], new_resource.id
@@ -206,6 +214,10 @@ class Chef
                          ulimit_update
                        end
 
+        # JMX Security
+        security_access_file = jvm_security_access_file_update
+        security_password_file = jvm_security_password_file_update
+
         # Update startup JVM config
         jvm_config = jvm_config_update
 
@@ -221,7 +233,7 @@ class Chef
         Chef::Log.debug("service = #{service}")
 
         # Mark resource as changed if any of supprting files requires update
-        status = start_script || jvm_config || logback || service
+        status = start_script || jvm_config || logback || service || security_access_file || security_password_file
         new_resource.updated_by_last_action(status)
         status
       end

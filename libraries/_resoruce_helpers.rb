@@ -205,21 +205,62 @@ module Knotx
       template.source(new_resource.knotx_conf_path)
       template.mode('0644')
       template.variables(
-        log_dir:       new_resource.log_dir,
-        min_heap:      new_resource.min_heap,
-        max_heap:      new_resource.max_heap,
-        extra_opts:    new_resource.extra_opts,
-        gc_opts:       new_resource.gc_opts,
-        jmx_enabled:   new_resource.jmx_enabled,
-        jmx_ip:        new_resource.jmx_ip,
-        jmx_port:      new_resource.jmx_port,
-        debug_enabled: new_resource.debug_enabled,
-        debug_port:    new_resource.debug_port
+        log_dir:              new_resource.log_dir,
+        min_heap:             new_resource.min_heap,
+        max_heap:             new_resource.max_heap,
+        extra_opts:           new_resource.extra_opts,
+        gc_opts:              new_resource.gc_opts,
+        jmx_enabled:          new_resource.jmx_enabled,
+        jmx_ip:               new_resource.jmx_ip,
+        jmx_port:             new_resource.jmx_port,
+        jmx_security_enabled: new_resource.jmx_security_enabled,
+        jmx_settings_dir:     new_resource.jmx_settings_dir,
+        debug_enabled:        new_resource.debug_enabled,
+        debug_port:           new_resource.debug_port
       )
       template.run_action(:create)
 
       template.updated_by_last_action?
     end
+
+    def jvm_security_access_file_update
+      # Rights file
+      template = Chef::Resource::Template.new(
+        new_resource.jvm_security_access_config_path,
+        run_context
+      )
+      template.owner(node['knotx']['user'])
+      template.group(node['knotx']['group'])
+      template.cookbook(new_resource.knotx_jvm_security_access_cookbook)
+      template.source(new_resource.knotx_jvm_security_access_path)
+      template.mode('0600')
+      template.variables(
+        jmx_user:     new_resource.jmx_user
+      )
+      template.run_action(:create)
+
+      template.updated_by_last_action?
+    end
+
+    def jvm_security_password_file_update
+      # Password file
+      template  = Chef::Resource::Template.new(
+        new_resource.jvm_security_password_config_path,
+        run_context
+      )
+      template.owner(node['knotx']['user'])
+      template.group(node['knotx']['group'])
+      template.cookbook(new_resource.knotx_jvm_security_password_cookbook)
+      template.source(new_resource.knotx_jvm_security_password_path)
+      template.mode('0600')
+      template.variables(
+        jmx_user:     new_resource.jmx_user,
+        jmx_password: new_resource.jmx_password
+      )
+      template.run_action(:create)
+
+      template.updated_by_last_action?
+    end      
 
     def log_config_update
       template = Chef::Resource::Template.new(

@@ -51,6 +51,10 @@ default['knotx']['jmx_enabled'] = true
 default['knotx']['jmx_ip'] = '0.0.0.0'
 default['knotx']['jmx_port'] = '18092'
 
+default['knotx']['jmx_security_enabled'] = false
+default['knotx']['jmx_user'] = 'admin'
+default['knotx']['jmx_password'] = 'admin'
+
 default['knotx']['debug_enabled'] = false
 default['knotx']['debug_port'] = '28092'
 
@@ -68,6 +72,12 @@ default['knotx']['source']['knotx_ulimit_path'] =
 
 default['knotx']['source']['knotx_conf_cookbook'] = 'knotx'
 default['knotx']['source']['knotx_conf_path'] = 'knotx/knotx.conf.erb'
+
+default['knotx']['source']['knotx_jvm_security_access_cookbook'] = 'knotx'
+default['knotx']['source']['knotx_jvm_security_access_path'] = 'knotx/jmxremote.access.erb'
+
+default['knotx']['source']['knotx_jvm_security_password_cookbook'] = 'knotx'
+default['knotx']['source']['knotx_jvm_security_password_path'] = 'knotx/jmxremote.password.erb'
 
 default['knotx']['source']['logback_xml_cookbook'] = 'knotx'
 default['knotx']['source']['logback_xml_path'] = 'knotx/logback.xml.erb'

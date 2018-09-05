@@ -38,6 +38,8 @@ class Chef
 
       # JVM opts
       attr_accessor :jvm_config_path
+      attr_accessor :jvm_security_access_config_path
+      attr_accessor :jvm_security_password_config_path
       attr_accessor :min_heap
       attr_accessor :max_heap
       attr_accessor :extra_opts
@@ -45,6 +47,9 @@ class Chef
       attr_accessor :jmx_enabled
       attr_accessor :jmx_ip
       attr_accessor :jmx_port
+      attr_accessor :jmx_security_enabled
+      attr_accessor :jmx_user
+      attr_accessor :jmx_password
       attr_accessor :debug_enabled
       attr_accessor :debug_port
 
@@ -57,6 +62,10 @@ class Chef
       attr_accessor :knotx_ulimit_path
       attr_accessor :knotx_conf_cookbook
       attr_accessor :knotx_conf_path
+      attr_accessor :knotx_jvm_security_access_cookbook
+      attr_accessor :knotx_jvm_security_access_path
+      attr_accessor :knotx_jvm_security_password_cookbook
+      attr_accessor :knotx_jvm_security_password_path
       attr_accessor :logback_xml_cookbook
       attr_accessor :logback_xml_path
 
