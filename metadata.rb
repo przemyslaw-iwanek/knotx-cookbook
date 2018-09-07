@@ -14,7 +14,7 @@ depends          'java'
 source_url       'https://github.com/Knotx/knotx-cookbook'
 issues_url       'https://github.com/Knotx/knotx-cookbook/issues'
 
-chef_version     '>= 13', '< 15'
+chef_version     '>= 12', '< 15'
 
 supports         'centos', '~> 6.0'
 supports         'centos', '~> 7.0'

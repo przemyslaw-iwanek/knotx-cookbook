@@ -205,18 +205,19 @@ module Knotx
       template.source(new_resource.knotx_conf_path)
       template.mode('0644')
       template.variables(
-        log_dir:              new_resource.log_dir,
-        min_heap:             new_resource.min_heap,
-        max_heap:             new_resource.max_heap,
-        extra_opts:           new_resource.extra_opts,
-        gc_opts:              new_resource.gc_opts,
-        jmx_enabled:          new_resource.jmx_enabled,
-        jmx_ip:               new_resource.jmx_ip,
-        jmx_port:             new_resource.jmx_port,
-        jmx_security_enabled: new_resource.jmx_security_enabled,
-        jmx_settings_dir:     new_resource.jmx_settings_dir,
-        debug_enabled:        new_resource.debug_enabled,
-        debug_port:           new_resource.debug_port
+        log_dir:                           new_resource.log_dir,
+        min_heap:                          new_resource.min_heap,
+        max_heap:                          new_resource.max_heap,
+        extra_opts:                        new_resource.extra_opts,
+        gc_opts:                           new_resource.gc_opts,
+        jmx_enabled:                       new_resource.jmx_enabled,
+        jmx_ip:                            new_resource.jmx_ip,
+        jmx_port:                          new_resource.jmx_port,
+        jmx_security_enabled:              new_resource.jmx_security_enabled,
+        jvm_security_access_config_path:   new_resource.jvm_security_access_config_path,
+        jvm_security_password_config_path: new_resource.jvm_security_password_config_path,
+        debug_enabled:                     new_resource.debug_enabled,
+        debug_port:                        new_resource.debug_port
       )
       template.run_action(:create)
 
